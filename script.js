@@ -10,7 +10,7 @@ canvas.height = window.innerHeight;
 // Characters to display (1s and 0s)
 const binary = '01';
 const columns = 70;
-const fontSize = canvas.width / columns;
+let fontSize = canvas.width / columns;
 
 // Array to hold rain drops
 const drops = [];
