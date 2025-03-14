@@ -1,6 +1,7 @@
 const canvas = document.getElementById('digitalRain');
 const ctx = canvas.getContext('2d');
 const toggleCheckbox = document.getElementById('theme-toggle');
+const typedText = document.getElementById('typed-text');
 
 // Set canvas size
 canvas.width = window.innerWidth;
@@ -8,8 +9,8 @@ canvas.height = window.innerHeight;
 
 // Characters to display (1s and 0s)
 const binary = '01';
-const fontSize = 16;
-const columns = canvas.width / fontSize;
+const columns = 70;
+const fontSize = canvas.width / columns;
 
 // Array to hold rain drops
 const drops = [];
@@ -20,16 +21,31 @@ for (let i = 0; i < columns; i++) {
 // Theme toggle logic
 let isDarkMode = false; // Start with light mode
 toggleCheckbox.addEventListener('change', () => {
-    isDarkMode = toggleCheckbox.checked; // Checked = dark mode
+    isDarkMode = toggleCheckbox.checked;
     document.body.classList.toggle('light-mode', !isDarkMode);
     document.body.classList.toggle('dark-mode', isDarkMode);
 });
 
-// Animation function
+// Typewriter effect for one line
+const textToType = "Hey, I'm Artem!";
+let index = 0;
+
+function typeWriter() {
+    if (index < textToType.length) {
+        typedText.textContent += textToType.charAt(index);
+        index++;
+        setTimeout(typeWriter, 100); // Speed of typing (ms)
+    }
+}
+
+// Start typewriter effect on page load
+window.onload = typeWriter;
+
+// Animation function for digital rain
 function draw() {
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)'; // Fade for dark mode
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.08)'; // Fade for dark mode
     if (!isDarkMode) {
-        ctx.fillStyle = 'rgba(240, 240, 240, 0.05)'; // Fade for light mode
+        ctx.fillStyle = 'rgba(240, 240, 240, 0.08)'; // Fade for light mode
     }
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -51,8 +67,8 @@ function draw() {
 window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    columns = canvas.width / fontSize
+    fontSize = canvas.width / columns
 });
 
-// Run animation
+// Run animations
 setInterval(draw, 100);
