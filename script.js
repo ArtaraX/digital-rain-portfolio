@@ -34,7 +34,7 @@ function typeWriter() {
     if (index < textToType.length) {
         typedText.textContent += textToType.charAt(index);
         index++;
-        setTimeout(typeWriter, 100); // Speed of typing (ms)
+        setTimeout(typeWriter, 500); // Speed of typing (ms)
     }
 }
 
