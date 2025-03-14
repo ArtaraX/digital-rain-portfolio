@@ -15,7 +15,7 @@ let fontSize = canvas.width / columns;
 // Array to hold rain drops
 const drops = [];
 for (let i = 0; i < columns; i++) {
-    drops[i] = Math.random() * canvas.height;
+    drops[i] = Math.random() * (-100);
 }
 
 // Theme toggle logic
