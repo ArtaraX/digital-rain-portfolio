@@ -9,13 +9,13 @@ canvas.height = window.innerHeight;
 
 // Characters to display (1s and 0s)
 const binary = '01';
-const columns = 70;
+const columns = 50;
 let fontSize = canvas.width / columns;
 
 // Array to hold rain drops
-const drops = [];
+let drops = [];
 for (let i = 0; i < columns; i++) {
-    drops[i] = Math.random() * (-1) * canvas.height;
+    drops[i] = Math.random() * (-1) * canvas.height / 2;
 }
 
 // Theme toggle logic
@@ -34,7 +34,7 @@ function typeWriter() {
     if (index < textToType.length) {
         typedText.textContent += textToType.charAt(index);
         index++;
-        setTimeout(typeWriter, 500); // Speed of typing (ms)
+        setTimeout(typeWriter, 300); // Speed of typing (ms)
     }
 }
 
@@ -57,7 +57,7 @@ function draw() {
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
         if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-            drops[i] = 0;
+            drops[i] = -canvas.height;
         }
         drops[i]++;
     }
